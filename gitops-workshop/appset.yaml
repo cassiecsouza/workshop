@@ -27,7 +27,7 @@ spec:
           - cassiesouza/workshop:{{.image_tag}}
       destination:
         server: '{{.server_address}}'
-        namespace: '{{.environment}}-frontend'
+        namespace: '{{.environment}}-{{.username}}-frontend'
       syncPolicy:
         automated:
           selfHeal: true

@@ -5,29 +5,29 @@ metadata:
 spec:
   generators:
     - git:
-        repoURL: https://git.harness.io/IFG41DWvSnaRLOVNB2uesg/att624org/cassieatt6240/harnessrepo.git
-        revision: attworkshop
+        repoURL: https://github.com/cassiecsouza/workshop.git
+        revision: main
         files:
         - path: "gitops-workshop/cluster-config/**/config.json"
   template:
     metadata:
-      name: '{{environment))-frontend'
+      name: '{{.environment}}-frontend'
       labels:
-        harness.io/envRef: '{{environment}}'
-        harness.io/serviceRef: '{{harness_service}}'
-        harness.io/buildRef: '{{image_tag}}'
+        harness.io/envRef: '{{.environment}}'
+        harness.io/serviceRef: '{{.harness_service}}'
+        harness.io/buildRef: '{{.image_tag}}'
     spec:
       project: a6a728ad
       source:
-        repoURL: https://git.harness.io/IFG41DWvSnaRLOVNB2uesg/att624org/cassieatt6240/harnessrepo.git
-        targetRevision: attworkshop
+        repoURL: https://github.com/cassiecsouza/workshop.git
+        targetRevision: main
         path: "gitops-workshop/kustomize/frontend"
         kustomize:
           images:
-          - docker.io/cassiesouza/workshop:{{image_tag}}
+          - docker.io/cassiesouza/workshop:{{.image_tag}}
       destination:
-        server: '{{server_address}}'
-        namespace: '{{environment}}-frontend'
+        server: '{{.server_address}}'
+        namespace: '{{.environment}}-frontend'
       syncPolicy:
         automated:
           selfHeal: true

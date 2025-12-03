@@ -24,7 +24,7 @@ spec:
         path: "gitops-workshop/kustomize/frontend"
         kustomize:
           images:
-          - docker.io/cassiesouza/workshop:{{.image_tag}}
+          - cassiesouza/workshop:{{.image_tag}}
       destination:
         server: '{{.server_address}}'
         namespace: '{{.environment}}-frontend'

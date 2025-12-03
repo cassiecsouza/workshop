@@ -15,10 +15,10 @@ spec:
         app: frontend
     spec:
       imagePullSecrets:
-        - name: frontend-regcred-cassieatt6240
+        - name: frontend-regcred
       containers:
         - name: frontend
-          image: docker.io/cassiesouza/workshop:latest  # will be overridden
+          image: cassiesouza/workshop:latest  # will be overridden
           imagePullPolicy: Always
           ports:
             - containerPort: 4000

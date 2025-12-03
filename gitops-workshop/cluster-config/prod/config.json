@@ -1,0 +1,7 @@
+{
+  "cluster_name" : "prod",
+  "harness_service" : "frontend",
+  "environment" : "prod",
+  "image_tag" : "cassieatt6240-9",
+  "server_address" : "https://kubernetes.default.svc"
+}

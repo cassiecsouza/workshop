@@ -2,6 +2,6 @@
   "cluster_name" : "dev",
   "harness_service" : "frontendgitops",
   "environment" : "dev",
-  "image_tag" : "cassieatt6240-15",
+  "image_tag" : "cassieatt6240-17",
   "server_address" : "https://kubernetes.default.svc"
 }

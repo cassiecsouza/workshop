@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: frontend-appset
+  name: frontend-appset-<add unique username>
 spec:
   generators:
     - git:
@@ -11,7 +11,7 @@ spec:
         - path: "gitops-workshop/cluster-config/**/config.json"
   template:
     metadata:
-      name: '{{.environment}}-frontend'
+      name: '{{.environment}}-{{.username}}-frontend'
       labels:
         harness.io/envRef: '{{.environment}}'
         harness.io/serviceRef: '{{.harness_service}}'

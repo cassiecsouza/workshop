@@ -151,43 +151,52 @@ After the **Build and Push** stage is complete, go to the **Security Tests** tab
 
 **Learning Objective(s):**
 
+- Configure a GitOps Repository
+- Create a GitOps Application Set
 - Create a k8s gitops service
-- Configure a GitOps Repository with credentials
-- Create a GitOps Application with proper configuration
 - Connect to a GitOps Agent at the organization level
 
 **Steps**
 
-1. Add a GitOps Repository
+**Add a GitOps Repository**
 
-- In your Harness project, expand Deployments, select GitOps, and then Settings
-- Select Repositories
-- Select New Repository
-- In Specify Repository Type, select Git
-- Enter the following 
+1. In your Harness project, expand Deployments, select GitOps, and then Settings
+
+2. Select Repositories
+
+3. Select New Repository
+
+4. In Specify Repository Type, select Git
+
+5. Enter the following 
 
 
 | Input           | Value          | Notes |
 | --------------- | -------------- | ----- |
 | Repository Name | workshop                                         |       |
 | GitOps Agent    | att-workshop                                |  Click on Organization to find the correct agent      |
-| Git Repository URL | <Add YOUR lab repo url from Github>  |     |
+| Git Repository URL | *Add YOUR lab repo url from Github*  |     |
 
-- Click on Continue
-- Once at Credentials, select Specify Credentials For Repository, then add the following input
+6. Click on Continue
+
+7. Once at Credentials, select Specify Credentials For Repository, then add the following input
    - Connection Type: **HTTPS**
    - Authentication to **Anonymous**
-- Click on Save & Continue
-- Select Finish
+8. Click on Save & Continue
 
-2. Add a GitOps Application Set
+9. Select Finish
 
-- In the context of Gitops, select Applications in the top right hand corner
-- Click on Application Set
-- Click on **+New Application Set**
-   - App Set Name: *frontend-appset-<input unique username>*
+**Add a GitOps Application Set**
+
+1. In the context of Gitops, select Applications in the top right hand corner
+
+2. Click on Application Set
+
+3. Click on **+New Application Set**
+   - App Set Name: *frontend-appset-\<input unique username>*
    - GitOps Agent: *att-workshop*
-   - Click **+New Service** and configure as follows:
+
+4. Click **+New Service** and configure as follows:
 
 
 | Input                      | Value                                               | Notes                              |
@@ -200,14 +209,14 @@ After the **Build and Push** stage is complete, go to the **Security Tests** tab
 | Manifest Identifier        |clusterconfig|                                    |
 | Repository                 |workshop-souzatt6243120|                                    |
 | Branch                     |main|                                    |
-| File Path           |gitops-workshop/cluster-config/<+env.name>/config.json|                                    |
+| File Path           |gitops-workshop/cluster-config/<+env.name>/config.json|                                    |
 | * **Add Deployment Repo Manifest**         |                                                     |                                    |                                   |
 | Deployment Repo Store         |Github|                                    |
 | Connector        |ATT Workshop|                                    |
 | Manifest Identifier        |appset|                                    |
 | Repository                 |workshop-souzatt6243120|                                    |
 | Branch                     |main|                                    |
-| File Path           |gitops-workshop/appset.yaml|                                    |
+| File Path           |gitops-workshop/appset.yaml|                                    |
 | **Add Artifact Source**          |                                                      |                                                                          |
 | Artifact Repository Type         | Docker Registry                                      |                                                                          |
 | Docker Registry Connector        | att-dockerhub                                        |                                                                          |
@@ -215,19 +224,21 @@ After the **Build and Push** stage is complete, go to the **Security Tests** tab
 | Image Path                       | cassiesouza/workshop                                 |                                                                          |
 | Tag                              | <+variable.username>-<+pipeline.sequenceId>          | Click on the Sigma next to the input box and choose Expression Variable  |
 
-- Click on Save
+5. Click on Save
 
-- In Environment, select **+New Environment**, name the Environment dev, and select Pre-Production
-- Select Save, then Continue
-- In Sync Policy, select Create-Update, and then select Continue
-- In Generators, select Continue
-- In Preview, navigate to your repository at the path *gitops/workshop/manifests/appset.yaml*. Copy the entire contents, and paste them into the Preview
-- UPDATE FILE 
-   - Find *<add unique username>* and replace with your unique username
-- Then *Validate*
-- Once validated, select Finish
+6. In Environment, select **+New Environment**, name the Environment **dev**, and select Pre-Production
 
-** Your appset should begin cascading two applications. One for dev and one for prod. This will take a couple of minutes**
+7. Select Save, then Continue
+
+8. In Sync Policy, select Create-Update, and then select Continue
+
+9. In Generators, no changes required, select Continue
+
+10. In Preview, navigate to your repository at the path `gitops-workshop/appset.yaml`. Copy the entire contents, and paste them into the Preview yaml editor
+
+11. Once validated successfully, select Finish
+
+   - *Your appset should begin cascading two applications. One for dev and one for prod. This will take a couple of minutes.*
 
 # Lab 4 - Create PR Pipeline - Dev
 
@@ -238,6 +249,8 @@ After the **Build and Push** stage is complete, go to the **Security Tests** tab
 - Add a Deploy stage to an existing pipeline
 
 - Create PR pipeline flow for a dev environment
+
+**Steps**
 
 1. In your existing pipeline, add a Deployment stage by clicking **Add Stage** and select **Deploy** as the Stage Type
 
@@ -252,9 +265,9 @@ After the **Build and Push** stage is complete, go to the **Security Tests** tab
 
 **Service**
 
-- Click **- Select -** on the service input box ****
+- Click **- Select -** on the service input box
 
-- Select **frontend** service****
+- Select **frontend** service
 
 **Environment**
 
@@ -283,7 +296,6 @@ The target infrastructure has been pre-created for us. The application will be d
 | image_tag       |<+artifacts.primary.tag>|       |
 | harness_service |<+service.identifier>|       |
 | environment     |<+environment.identifier>|       |
-| username     |<+pipeline.variables.username>|       |
 
 **Add PR Approval Step**
 - **After** the Update Release Repo and **before** the Merge PR add **Harness Approval** step according to the table  below
@@ -297,7 +309,7 @@ The target infrastructure has been pre-created for us. The application will be d
 
 **Modify Fetch Linked Apps**
 - In the Fetch Linked Apps step, enable the **Filter applications per configured service/env** radio button
-- Apply Changes
+- Click **Apply Changes**
 
 **Add GitOps Sync Step**
 - After Fetch Linked Apps, **+Add Step**, select **GitOps Sync** and add the following values
@@ -306,29 +318,21 @@ The target infrastructure has been pre-created for us. The application will be d
 | ----------- | ----------------- | ----- |
 | Name        |GitOps Sync|              |
 
-- Click on Apply Changes
-- Click on Save
-
-**Add Username Pipeline Variable**
-- Go to the right nav bar, click on Variables
-- Click **+ Add Variable** in the first section
-- Set Name to `username`
-- Set Value to `<input your unique username>`
-- Set variable as required during runtime
 - Click **Apply Changes**
 - Click **Save**
 
 **Add GitOps Cluster to Dev Environment**
 
-- Expand Deployments, then go to Environments, click on dev
-- Once in the dev environment, go to GitOps Clusters, click **+ Select Cluster(s)**
-- Choose Organization at the top, then the in-cluster agent for for the NON prod Agent Id (e.g Agent Id: org.attworkshop)
-- Click Apply Selected
+1. Expand Deployments, then go to **Environments**, click on **dev**
+2. Once in the dev environment, go to GitOps Clusters, click **+ Select Cluster(s)**
+3. Choose Organization at the top, then the in-cluster agent for the NON prod Agent Id (e.g Agent Id: org.attworkshop)
+4. Click **Apply Selected**
 
 **Run Pipeline**
-- Navigate to Pipelines
-- Click on the workshop pipeline
-- Click on Run
+
+1. Navigate to Pipelines
+2. Click on the **workshop** pipeline
+3. Click on **Run**
 
 # Lab 5 - Continuous Deployment - Production
 
@@ -339,6 +343,8 @@ The target infrastructure has been pre-created for us. The application will be d
 - Deploy to a production environment using GitOps
 
 - Incorporate an advanced deployment strategy such as Canary
+
+**Steps**
 
 1. In the existing pipeline, add a Deployment stage by clicking **Add Stage**, select **Use template**, and select **Argo Rollouts - Prod Promotion**, then **Use template**
 

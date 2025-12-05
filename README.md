@@ -85,7 +85,7 @@
 | ----------------- | --------------------------------------------------- | ------------------------------------------------------------------------ |
 | Name              |Push to DockerHub|
 | Registry Type     |Third-Party Artifact Registry|
-| Docker Connector  |att-dockerhub|                                                                          |
+| Docker Connector  |gitops-workshop-dockerhub|                                                                          |
 | Docker Repository |cassiesouza/workshop|                                                                          |
 | Tags              |<+variable.username>-<+pipeline.sequenceId>| This will be the tag of the image using harness expressions              |
 | Dockerfile        |/harness/frontend-app/harness-webapp/Dockerfile| This tells harness where is the Dockerfile for building the app          |
@@ -174,7 +174,7 @@ After the **Build and Push** stage is complete, go to the **Security Tests** tab
 | Input           | Value          | Notes |
 | --------------- | -------------- | ----- |
 | Repository Name | workshop                                         |       |
-| GitOps Agent    | att-workshop                                |  Click on Organization to find the correct agent      |
+| GitOps Agent    | gitops-workshop                                |  Click on Organization to find the correct agent      |
 | Git Repository URL | *Add YOUR lab repo url from Github*  |     |
 
 6. Click on Continue
@@ -194,7 +194,7 @@ After the **Build and Push** stage is complete, go to the **Security Tests** tab
 
 3. Click on **+New Application Set**
    - App Set Name: *frontend-appset-\<input unique username>*
-   - GitOps Agent: *att-workshop*
+   - GitOps Agent: *gitops-workshop*
 
 4. Click **+New Service** and configure as follows:
 
@@ -205,21 +205,21 @@ After the **Build and Push** stage is complete, go to the **Security Tests** tab
 | Deployment Type            |Kubernetes|                                    |
 | * **Add Release Repo Manifest**         |                                                     |                                    |                                   |
 | Release Repo Store         |Github|                                    |
-| Connector        |ATT Workshop|                                    |
+| Connector        |gitops-workshop-github|                                    |
 | Manifest Identifier        |clusterconfig|                                    |
 | Repository                 |workshop-souzatt6243120|                                    |
 | Branch                     |main|                                    |
 | File Path           |gitops-workshop/cluster-config/<+env.name>/config.json|                                    |
 | * **Add Deployment Repo Manifest**         |                                                     |                                    |                                   |
 | Deployment Repo Store         |Github|                                    |
-| Connector        |ATT Workshop|                                    |
+| Connector        |gitops-workshop-github|                                    |
 | Manifest Identifier        |appset|                                    |
 | Repository                 |workshop-souzatt6243120|                                    |
 | Branch                     |main|                                    |
 | File Path           |gitops-workshop/appset.yaml|                                    |
 | **Add Artifact Source**          |                                                      |                                                                          |
 | Artifact Repository Type         | Docker Registry                                      |                                                                          |
-| Docker Registry Connector        | att-dockerhub                                        |                                                                          |
+| Docker Registry Connector        | gitops-workshop-dockerhub                                        |                                                                          |
 | Artifact Source Identifier       | workshop                                             |                                                                          |
 | Image Path                       | cassiesouza/workshop                                 |                                                                          |
 | Tag                              | <+variable.username>-<+pipeline.sequenceId>          | Click on the Sigma next to the input box and choose Expression Variable  |
@@ -325,7 +325,7 @@ The target infrastructure has been pre-created for us. The application will be d
 
 1. Expand Deployments, then go to **Environments**, click on **dev**
 2. Once in the dev environment, go to GitOps Clusters, click **+ Select Cluster(s)**
-3. Choose Organization at the top, then the in-cluster agent for the NON prod Agent Id (e.g Agent Id: org.attworkshop)
+3. Choose Organization at the top, then the in-cluster agent for the NON prod Agent Id
 4. Click **Apply Selected**
 
 **Run Pipeline**

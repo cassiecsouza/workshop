@@ -2,7 +2,7 @@
   "cluster_name" : "prod",
   "harness_service" : "workshopverizondemo",
   "environment" : "prod",
-  "image_tag" : "cassieatt6240-19",
+  "image_tag" : "4",
   "server_address" : "https://kubernetes.default.svc",
-  "username" : "cassieatt6240"
+  "username" : "cassie"
 }

@@ -1,6 +1,6 @@
 {
   "cluster_name" : "prod",
-  "harness_service" : "frontendgitops",
+  "harness_service" : "workshopverizondemo",
   "environment" : "prod",
   "image_tag" : "cassieatt6240-19",
   "server_address" : "https://kubernetes.default.svc",

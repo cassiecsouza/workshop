@@ -1,0 +1,8 @@
+{
+  "cluster_name" : "wkgitopsHUB",
+  "harness_service" : "workshopverizondemo",
+  "environment" : "wkgitopsHUB",
+  "image_tag" : "cassieatt6240-19",
+  "server_address" : "https://kubernetes.default.svc",
+  "username" : "cassie"
+}

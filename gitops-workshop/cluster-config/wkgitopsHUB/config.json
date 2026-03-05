@@ -3,6 +3,7 @@
   "harness_service" : "workshopverizondemo",
   "environment" : "wkgitopsHUB",
   "image_tag" : "cassieatt6240-50-aksdjcaskjdnvksajdnvc",
+  "hello" : "asgas",
   "server_address" : "https://kubernetes.default.svc",
   "username" : "cassie"
 }

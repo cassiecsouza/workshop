@@ -5,7 +5,7 @@ metadata:
 spec:
   generators:
     - git:
-        repoURL: https://github.com/cassiecsouza/workshop-cassieatt6240.git
+        repoURL: {{.repo_url}}
         revision: main
         files:
         - path: "gitops-workshop/cluster-config/**/config.json"
@@ -19,7 +19,7 @@ spec:
     spec:
       project: a6a728ad
       source:
-        repoURL: https://github.com/cassiecsouza/workshop-cassieatt6240.git
+        repoURL: {{.repo_url}}
         targetRevision: main
         path: "gitops-workshop/kustomize/frontend"
         kustomize:

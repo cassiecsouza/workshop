@@ -4,5 +4,6 @@
   "environment" : "prod",
   "image_tag" : "cassieatt6240-19",
   "server_address" : "https://kubernetes.default.svc",
-  "username" : "cassieatt6240"
+  "username" : "cassieatt6240",
+  "repo_url" : "https://app.harness.io/git/IFG41DWvSnaRLOVNB2uesg/<org-id>/cassieatt6240/harnessrepo.git"
 }

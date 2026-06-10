@@ -175,7 +175,7 @@ After the **Build and Push** stage is complete, go to the **Security Tests** tab
 | --------------- | -------------- | ----- |
 | Repository Name | workshop                                         |       |
 | GitOps Agent    | workshop-agent                                 |  Click on Organization to find the correct agent      |
-| Git Repository URL | https://github.com/cassiecsouza/workshop-cassieatt6240.git  |     |
+| Git Repository URL | Your Harness Code repo URL — go to **Code Repositories → harnessrepo → Clone** in your project and copy the HTTPS URL. It follows the format: `https://app.harness.io/git/IFG41DWvSnaRLOVNB2uesg/<org-id>/<your-username>/harnessrepo.git` |     |
 
 6. Click on Continue
 
@@ -207,14 +207,14 @@ After the **Build and Push** stage is complete, go to the **Security Tests** tab
 | Release Repo Store         |Github|                                    |
 | Connector        |gitops-workshop-github|                                    |
 | Manifest Identifier        |clusterconfig|                                    |
-| Repository                 |workshop-cassieatt6240|                                    |
+| Repository                 |workshop|                                    |
 | Branch                     |main|                                    |
 | File Path           |gitops-workshop/cluster-config/<+env.name>/config.json|                                    |
 | * **Add Deployment Repo Manifest**         |                                                     |                                    |                                   |
 | Deployment Repo Store         |Github|                                    |
 | Connector        |gitops-workshop-github|                                    |
 | Manifest Identifier        |appset|                                    |
-| Repository                 |workshop-cassieatt6240|                                    |
+| Repository                 |workshop|                                    |
 | Branch                     |main|                                    |
 | File Path           |gitops-workshop/appset.yaml|                                    |
 | **Add Artifact Source**          |                                                      |                                                                          |

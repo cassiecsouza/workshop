@@ -85,7 +85,7 @@
 | ----------------- | --------------------------------------------------- | ------------------------------------------------------------------------ |
 | Name              |Push to DockerHub|
 | Registry Type     |Third-Party Artifact Registry|
-| Docker Connector  |gitops-workshop-dockerhub|                                                                          |
+| Docker Connector  |gitops-workshop|                                                                          |
 | Docker Repository |cassiesouza/workshop|                                                                          |
 | Tags              |<+variable.username>-<+pipeline.sequenceId>| This will be the tag of the image using harness expressions              |
 | Dockerfile        |/harness/frontend-app/harness-webapp/Dockerfile| This tells harness where is the Dockerfile for building the app          |
@@ -174,7 +174,7 @@ After the **Build and Push** stage is complete, go to the **Security Tests** tab
 | Input           | Value          | Notes |
 | --------------- | -------------- | ----- |
 | Repository Name | workshop                                         |       |
-| GitOps Agent    | gitops-workshop                                |  Click on Organization to find the correct agent      |
+| GitOps Agent    | workshop-agent                                 |  Click on Organization to find the correct agent      |
 | Git Repository URL | https://github.com/cassiecsouza/workshop-cassieatt6240.git  |     |
 
 6. Click on Continue
@@ -194,7 +194,7 @@ After the **Build and Push** stage is complete, go to the **Security Tests** tab
 
 3. Click on **+New Application Set**
    - App Set Name: *frontend-appset-cassieatt6240*
-   - GitOps Agent: *gitops-workshop*
+   - GitOps Agent: *workshop-agent*
 
 4. Click **+New Service** and configure as follows:
 
@@ -219,7 +219,7 @@ After the **Build and Push** stage is complete, go to the **Security Tests** tab
 | File Path           |gitops-workshop/appset.yaml|                                    |
 | **Add Artifact Source**          |                                                      |                                                                          |
 | Artifact Repository Type         | Docker Registry                                      |                                                                          |
-| Docker Registry Connector        | gitops-workshop-dockerhub                                        |                                                                          |
+| Docker Registry Connector        | gitops-workshop                                                  |                                                                          |
 | Artifact Source Identifier       | workshop                                             |                                                                          |
 | Image Path                       | cassiesouza/workshop                                 |                                                                          |
 | Tag                              | <+variable.username>-<+pipeline.sequenceId>          | Click on the Sigma next to the input box and choose Expression Variable  |

@@ -69,7 +69,7 @@
 | ------------- | ------------------- | ----- |
 | Template Name |Compile Application|       |
 
-- Select the  template and press **Use Template,** then provide a name for that template
+- Select the  template and press **Use Template,** then provide a name for that template
 
 
 
@@ -88,7 +88,7 @@
 | Docker Connector  |gitops-workshop|                                                                          |
 | Docker Repository |cassiesouza/workshop|                                                                          |
 | Tags              |<+variable.username>-<+pipeline.sequenceId>| This will be the tag of the image using harness expressions              |
-| Dockerfile        |/harness/frontend-app/harness-webapp/Dockerfile| This tells harness where is the Dockerfile for building the app          |
+| Dockerfile        |/harness/frontend-app/harness-webapp/Dockerfile| This tells harness where is the Dockerfile for building the app          |
 | Context           |/harness/frontend-app/harness-webapp| This tells from where to run the instructions included in the dockerfile |
 
 1. Click **Apply Changes** to close the config dialog
@@ -105,13 +105,13 @@
 
 **Summary:** Our security team has implemented orchestration of **Fortify** and **OWASP** scans for our code in a reusable form **(templates)**. In order to improve our security posture they have also added policies to enforce us to include those templates
 
-![](https://lh7-us.googleusercontent.com/docsz/AD_4nXcLr5TGcKRWOjVgB_sCAHHEeLPyd6EBdnkt2-mq_imTkZbQMEwJD03Q1wZyhWqHxoCNIIYWJWlRbnZrvZn2pPYIwTzXlOGdhMDEgn-J2JnK7lVastmfpdwTqDHXjpP0DK3TgU1gM-Ec_0iZLicWV7KpgW2FdXUCcAtraDGaEz8hI3dpWGLXkg?key=cRG2cvp_PHVW0KG2Gq6Y_A)
+![](https://lh7-us.googleusercontent.com/docsz/AD_4nXcLr5TGcKRWOjVgB_sCAHHEeLPyd6EBdnkt2-mq_imTkZbQMEwJD03Q1wZyhWqHxoCNIIYWJWlRbnZrvZrvZrvZnm2fpdwTqDHXjpP0DK3TgU1gM-Ec_0iZLicWV7KpgW2FdXUCcAtraDGaEz8hI3dpWGLXkg?key=cRG2cvp_PHVW0KG2Gq6Y_A)
 
 **Learning Objective(s):**
 
 - Understand how governance plays a role in the path to production
 
-- Reusable templates make developer’s life easier
+- Reusable templates make developer's life easier
 
 - DevSecOps practices can be easily achieved
 
@@ -120,9 +120,9 @@
 1. In the existing pipeline, within the Build stage **before** PushToDockerhub step click on the plus icon to add a new step
 
 2. Select use template\
-   ![](https://lh7-us.googleusercontent.com/docsz/AD_4nXeC5rTVxlk7DeZeU_cINwcKo6Nf2wVW9brQ9MiCEfppJwmU-uH3QcNZ53qTxhur57KeySksoDBg9EqjhgKOgAEDKon6iNz9cFxozBe9VZssV-t77VNo6t1zPUvm6e2NOZJDKncxd9c2GM4HE-h-L4cIOl4u6Uqx_azoKchMdg?key=cRG2cvp_PHVW0KG2Gq6Y_A)
+   ![](https://lh7-us.googleusercontent.com/docsz/AD_4nXeC5rTVxlk7DeZeU_cINwcKo6Nf2wVW9brQ9MiCEfppJwmU-uH3QcNZ53qTxhur57KeySksoDBg9EqjhgKOgAEDKon6iNz9cFxozBe9VZssV-p77VNo6t1zPUvm6e2NOZJDKncxd9c2GM4HE-h-L4cIOl4u6Uqx_azoKchMdg?key=cRG2cvp_PHVW0KG2Gq6Y_A)
 
-3. Select **DevX Fortify Scan** 
+3. Select **DevX Fortify Scan** 
 
 4. Name the step **Fortify**
 
@@ -154,7 +154,7 @@ After the **Build and Push** stage is complete, go to the **Security Tests** tab
 - Configure a GitOps Repository
 - Create a GitOps Application Set
 - Create a k8s gitops service
-- Connect to a GitOps Agent at the organization level
+- Connect to a GitOps Agent at the account level
 
 **Steps**
 
@@ -162,83 +162,85 @@ After the **Build and Push** stage is complete, go to the **Security Tests** tab
 
 1. In your Harness project, expand Deployments, select GitOps, and then Settings
 
-2. Select Repositories
+2. Select **Repositories**
 
-3. Select New Repository
+3. Select **New Repository**
 
-4. In Specify Repository Type, select Git
+4. In Specify Repository Type, select **Git**
 
-5. Enter the following 
+5. Before continuing, generate a clone credential for your Harness Code repository:
+   - In your project, navigate to **Code Repositories**, select **harnessrepo**, and click **Clone**
+   - Click **Generate Clone Credential**, copy the generated token, and save it — you will need it in the next step
 
+6. Enter the following repository details:
 
-| Input           | Value          | Notes |
-| --------------- | -------------- | ----- |
-| Repository Name | workshop                                         |       |
-| GitOps Agent    | workshop-agent                                 |  Click on Organization to find the correct agent      |
-| Git Repository URL | Your Harness Code repo URL — go to **Code Repositories → harnessrepo → Clone** in your project and copy the HTTPS URL. It follows the format: `https://app.harness.io/git/IFG41DWvSnaRLOVNB2uesg/<org-id>/<your-username>/harnessrepo.git` |     |
+| Input              | Value          | Notes |
+| ------------------ | -------------- | ----- |
+| Repository Name    | workshop       |       |
+| GitOps Agent       | workshop-agent | Click on **Account** to find the correct agent |
+| Git Repository URL | *(your personalized Harness Code repo URL — pre-filled in your copy of this README)* | |
 
-6. Click on Continue
+7. Click **Continue**
 
-7. Once at Credentials, select Specify Credentials For Repository, then add the following input
+8. Under Credentials, select **Specify Credentials For Repository** and enter the following:
    - Connection Type: **HTTPS**
-   - Authentication to **Anonymous**
-8. Click on Save & Continue
+   - Authentication: **Username And Password**
+     - Username: your Harness username (same as your project ID)
+     - Password / Token: the clone credential token you generated in step 5
 
-9. Select Finish
+9. Click **Save & Continue**, then **Finish**
 
 **Add a GitOps Application Set**
 
-1. In the context of Gitops, select Applications in the top right hand corner
+10. In the GitOps context, select **Applications** in the top right-hand corner
 
-2. Click on Application Set
+11. Click on **Application Set**
 
-3. Click on **+New Application Set**
-   - App Set Name: *frontend-appset-cassieatt6240*
-   - GitOps Agent: *workshop-agent*
+12. Click **+New Application Set** and enter:
+    - App Set Name: *frontend-appset-\<your-username\>*
+    - GitOps Agent: *workshop-agent*
 
-4. Click **+New Service** and configure as follows:
+13. Click **+New Service** and configure as follows:
 
+| Input                            | Value                                                   | Notes |
+| -------------------------------- | ------------------------------------------------------- | ----- |
+| Name                             | frontend                                                | |
+| Deployment Type                  | Kubernetes                                              | |
+| **Add Release Repo Manifest**    |                                                         | |
+| Release Repo Store               | Code                                                    | Select **Harness Code** |
+| Manifest Identifier              | clusterconfig                                           | |
+| Repository                       | harnessrepo                                             | Select from the list, then click **Apply Selected** |
+| Branch                           | main                                                    | |
+| File Path                        | gitops-workshop/cluster-config/<+env.name>/config.json  | |
+| **Add Deployment Repo Manifest** |                                                         | |
+| Deployment Repo Store            | Code                                                    | Select **Harness Code** |
+| Manifest Identifier              | appset                                                  | |
+| Repository                       | harnessrepo                                             | Select from the list, then click **Apply Selected** |
+| Branch                           | main                                                    | |
+| File Path                        | gitops-workshop/appset.yaml                             | |
+| **Add Artifact Source**          |                                                         | |
+| Artifact Repository Type         | Docker Registry                                         | |
+| Docker Registry Connector        | gitops-workshop                                         | |
+| Artifact Source Identifier       | workshop                                                | |
+| Image Path                       | cassiesouza/workshop                                    | |
+| Tag                              | \<+variable.username\>-\<+pipeline.sequenceId\>         | Click the Sigma icon next to the input box and choose **Expression Variable** |
 
-| Input                      | Value                                               | Notes                              |
-| -------------------------- | --------------------------------------------------- | ---------------------------------- |
-| Name                       |frontend|                                    |
-| Deployment Type            |Kubernetes|                                    |
-| * **Add Release Repo Manifest**         |                                                     |                                    |                                   |
-| Release Repo Store         |Github|                                    |
-| Connector        |gitops-workshop-github|                                    |
-| Manifest Identifier        |clusterconfig|                                    |
-| Repository                 |workshop|                                    |
-| Branch                     |main|                                    |
-| File Path           |gitops-workshop/cluster-config/<+env.name>/config.json|                                    |
-| * **Add Deployment Repo Manifest**         |                                                     |                                    |                                   |
-| Deployment Repo Store         |Github|                                    |
-| Connector        |gitops-workshop-github|                                    |
-| Manifest Identifier        |appset|                                    |
-| Repository                 |workshop|                                    |
-| Branch                     |main|                                    |
-| File Path           |gitops-workshop/appset.yaml|                                    |
-| **Add Artifact Source**          |                                                      |                                                                          |
-| Artifact Repository Type         | Docker Registry                                      |                                                                          |
-| Docker Registry Connector        | gitops-workshop                                                  |                                                                          |
-| Artifact Source Identifier       | workshop                                             |                                                                          |
-| Image Path                       | cassiesouza/workshop                                 |                                                                          |
-| Tag                              | <+variable.username>-<+pipeline.sequenceId>          | Click on the Sigma next to the input box and choose Expression Variable  |
+14. Click **Save**
 
-5. Click on Save
+15. In Environment, select **+New Environment**, name the Environment **dev**, and select **Pre-Production**
 
-6. In Environment, select **+New Environment**, name the Environment **dev**, and select Pre-Production
+16. Select **Save**, then **Continue**
 
-7. Select Save, then Continue
+17. In Sync Policy, select **Create-Update**, then select **Continue**
 
-8. In Sync Policy, select Create-Update, and then select Continue
+18. In Generators, no changes are required — select **Continue**
 
-9. In Generators, no changes required, select Continue
+19. In Preview, open the `gitops-workshop/appset.yaml` file from your **Code Repository** (it has already been personalised for your project with the correct repository URLs and project ID). Copy the entire contents and paste them into the Preview YAML editor.
 
-10. In Preview, navigate to your repository at the path `gitops-workshop/appset.yaml`. Copy the entire contents, and paste them into the Preview yaml editor
+20. Once validated successfully, select **Finish**
 
-11. Once validated successfully, select Finish
+    - *Your appset should begin cascading two applications — one for dev and one for prod. This will take a couple of minutes.*
 
-   - *Your appset should begin cascading two applications. One for dev and one for prod. This will take a couple of minutes.*
 
 # Lab 4 - Create PR Pipeline - Dev
 
@@ -271,7 +273,7 @@ After the **Build and Push** stage is complete, go to the **Security Tests** tab
 
 **Environment**
 
-The target infrastructure has been pre-created for us. The application will be deployed to a k8s cluster on the given namespace  
+The target infrastructure has been pre-created for us. The application will be deployed to a k8s cluster on the given namespace  
 
 - Click **- Select -** on the environment input box
 
@@ -298,7 +300,7 @@ The target infrastructure has been pre-created for us. The application will be d
 | environment     |<+environment.identifier>|       |
 
 **Add PR Approval Step**
-- **After** the Update Release Repo and **before** the Merge PR add **Harness Approval** step according to the table  below
+- **After** the Update Release Repo and **before** the Merge PR add **Harness Approval** step according to the table  below
 
 - Configure the Approval step as follows
 
@@ -324,8 +326,8 @@ The target infrastructure has been pre-created for us. The application will be d
 **Add GitOps Cluster to Dev Environment**
 
 1. Expand Deployments, then go to **Environments**, click on **dev**
-2. Once in the dev environment, go to GitOps Clusters, click **+ Select Cluster(s)**
-3. Choose Organization at the top, then the in-cluster agent for the NON prod Agent Id
+2. Once in the dev environment, go to **GitOps Clusters**, click **+ Select Cluster(s)**
+3. Choose **Account** at the top, then select the in-cluster agent
 4. Click **Apply Selected**
 
 **Run Pipeline**
@@ -346,27 +348,34 @@ The target infrastructure has been pre-created for us. The application will be d
 
 **Steps**
 
-1. In the existing pipeline, add a Deployment stage by clicking **Add Stage**, select **Use template**, and select **Argo Rollouts - Prod Promotion**, then **Use template**
+**Add GitOps Cluster to Prod Environment**
 
-2. About your Stage
+1. Expand Deployments, then go to **Environments**, click on **prod**
+2. Once in the prod environment, go to **GitOps Clusters**, click **+ Select Cluster(s)**
+3. Choose **Account** at the top, then select the in-cluster agent
+4. Click **Apply Selected**
 
+**Configure the Prod Deploy Stage**
+
+5. In the existing pipeline, add a Deployment stage by clicking **Add Stage**, select **Use template**, and select **Argo Rollouts - Prod Promotion**, then **Use template**
+
+6. About your Stage
 
 | Input           | Value          | Notes |
 | --------------- | -------------- | ----- |
 | Stage Name      |Deploy Prod|       |
 
-3. Click on Setup Stage
+7. Click on **Setup Stage**
 
-4. Under **Template Inputs** 
+8. Under **Template Inputs** configure the following settings:
+   - For **Service**, select "Propogate from: [Deploy] - Service [frontend]"
+   - Click **Deploy to Different Environment**
+   - In **Specify Environment**, click on the sigma icon on the right, choose Fixed Value, and select **prod** from the dropdown
+   - Click **Apply Selected**
 
-- Configure the **Template Inputs** with the following settings:
-  - For **Service**, select "Propogate from: [Deploy] - Service [frontend]"
-  - Click **Deploy to Different Environment**
-  - In **Specify Environment**, click on the sigma icon on the right, choose Fixed Value, and select **prod** from the dropdown
-  - Click Apply Selected
+9. Click **Save**
+10. Click **Run** Pipeline
 
-6. Click **Save**
-7. Click **Run** Pipeline
 
 # Lab 6 - Governance/Policy as Code
 
@@ -387,11 +396,11 @@ The target infrastructure has been pre-created for us. The application will be d
 
 2. Click **Build a Sample Policy**
 
-3. From the suggested list select **Pipeline - Approval**  and click on next
+3. From the suggested list select **Pipeline - Approval**  and click on next
 
 4. Click Next: Enforce Policy
 
-5. Set the values according to the table  below and confirm
+5. Set the values according to the table  below and confirm
 
 | Input            | Value        | Notes |
 | ---------------- | ------------ | ----- |
@@ -422,3 +431,72 @@ The target infrastructure has been pre-created for us. The application will be d
 | User Groups |All Project Users|       |
 
 6. Click **Save** and note that the save succeeds without any policy failure
+
+
+# Lab 7 - GitOps Policy as Code
+
+### Summary: Extend governance into your GitOps delivery by creating and enforcing an OPA policy that prevents GitOps applications from deploying to restricted Kubernetes namespaces
+
+**Learning Objective(s):**
+
+- Create a custom OPA Rego policy scoped to GitOps Applications
+
+- Enforce namespace restrictions via policy evaluation
+
+- Test policy enforcement by attempting a deployment to a forbidden namespace
+
+**Steps**
+
+**Create a GitOps Namespace Restriction Policy**
+
+1. From the secondary menu, select **Project Settings** and select **Governance Policies**
+
+2. Click **+ New Policy**
+
+3. Enter the policy name:
+
+| Input | Value                            |
+| ----- | -------------------------------- |
+| Name  | Restrict kube-system namespace   |
+
+4. In the policy editor, enter the following OPA Rego policy and click **Save**:
+
+```rego
+package policy
+
+deny[msg] {
+  input.application.spec.destination.namespace == "kube-system"
+  msg := sprintf(
+    "Deploying to the 'kube-system' namespace is not permitted. Destination: %v",
+    [input.application.spec.destination.namespace]
+  )
+}
+```
+
+**Create a Policy Set to Enforce the Rule**
+
+5. Click **+ New Policy Set**
+
+6. Configure the policy set as follows:
+
+| Input       | Value                          | Notes |
+| ----------- | ------------------------------ | ----- |
+| Name        | GitOps Namespace Restrictions  |       |
+| Entity Type | GitOps Application             |       |
+| Event       | On Save                        |       |
+
+7. Click **+ Add Policy**, select **Restrict kube-system namespace**, and set the failure strategy to **Error & exit**
+
+8. Click **Apply**, then **Finish**
+
+**Test the Policy**
+
+9. Navigate to **Deployments → GitOps → Applications**
+
+10. Select one of your running applications (e.g., `<your-username>-dev-frontend`)
+
+11. Click **Edit** and change the **Destination Namespace** to `kube-system`
+
+12. Click **Save** — the save should be **blocked** with a policy violation message
+
+13. Revert the namespace back to the original value (e.g., `<your-username>-dev`) and click **Save** again — it should succeed

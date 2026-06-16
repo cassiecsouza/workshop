@@ -1,9 +1,9 @@
 {
-  "cluster_name" : "dev",
-  "harness_service" : "test",
-  "environment" : "dev",
-  "image_tag" : "cassieatt6240-19",
-  "server_address" : "https://kubernetes.default.svc",
-  "username" : "cassieatt6240",
-  "repo_url" : "https://app.harness.io/git/IFG41DWvSnaRLOVNB2uesg/<org-id>/cassieatt6240/harnessrepo.git"
+  "cluster_name": "dev",
+  "harness_service": "frontend",
+  "environment": "dev",
+  "image_tag": "latest",
+  "server_address": "https://kubernetes.default.svc",
+  "username": "WORKSHOP_USERNAME",
+  "repo_url": "WORKSHOP_REPO_URL"
 }
